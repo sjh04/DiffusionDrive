@@ -1,6 +1,6 @@
 # ================ base config ===================
 version = 'mini'
-version = 'trainval'
+# version = 'trainval'
 length = {'trainval': 28130, 'mini': 323}
 
 plugin = True
@@ -9,8 +9,8 @@ dist_params = dict(backend="nccl")
 log_level = "INFO"
 work_dir = None
 
-total_batch_size = 48
-num_gpus = 8
+total_batch_size = 16
+num_gpus = 1
 batch_size = total_batch_size // num_gpus
 num_iters_per_epoch = int(length[version] // (num_gpus * batch_size))
 num_epochs = 10
@@ -404,7 +404,7 @@ model = dict(
             ego_fut_mode=ego_fut_mode,
             if_init_timemlp=False,
             motion_anchor=f'data/kmeans/kmeans_motion_{fut_mode}.npy',
-            plan_anchor=f'data/kmeans/kmeans_plan_{ego_fut_mode}.npy',
+            plan_anchor=f'data/kmeans/kmeans_plan_vocab_{ego_fut_mode}.npy',
             embed_dims=embed_dims,
             decouple_attn=decouple_attn_motion,
             instance_queue=dict(
@@ -676,7 +676,8 @@ data_basic_config = dict(
     classes=class_names,
     map_classes=map_class_names,
     modality=input_modality,
-    version="v1.0-trainval",
+    # version="v1.0-trainval",
+    version="v1.0-mini",
 )
 eval_config = dict(
     **data_basic_config,

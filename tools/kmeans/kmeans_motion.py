@@ -41,7 +41,7 @@ def lidar2agent(trajs_offset, boxes):
 K = 6
 DIS_THRESH = 55
 
-fp = 'data/infos/nuscenes_infos_train.pkl'
+fp = '/mnt/vdb/sjh04/DiffusionDrive/data/infos/mini/nuscenes_infos_train.pkl'
 data = mmcv.load(fp)
 data_infos = list(sorted(data["infos"], key=lambda e: e["timestamp"]))
 intention = dict()

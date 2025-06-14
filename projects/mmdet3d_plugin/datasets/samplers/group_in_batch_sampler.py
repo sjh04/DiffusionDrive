@@ -83,6 +83,7 @@ class GroupInBatchSampler(Sampler):
         self.group_sizes = np.bincount(self.flag)
         self.groups_num = len(self.group_sizes)
         self.global_batch_size = batch_size * world_size
+        # print(f"DEBUG groups_num: {self.groups_num}, global_batch_size: {self.global_batch_size}")
         assert self.groups_num >= self.global_batch_size
 
         # Now, for efficiency, make a dict group_idx: List[dataset sample_idxs]
